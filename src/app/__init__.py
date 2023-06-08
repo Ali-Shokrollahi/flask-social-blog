@@ -1,10 +1,14 @@
 from flask import Flask
+from flask_mysqldb import MySQL
 
 from app import views
 from config import Config
 
-app = Flask(__name__)
-app.config.from_object(Config)
+mysql = MySQL()
 
-if __name__ == '__main__':
-    app.run()
+
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    mysql.init_app(app)
+    return app
