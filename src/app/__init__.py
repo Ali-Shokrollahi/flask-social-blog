@@ -11,5 +11,6 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     mysql.init_app(app)
+    app.extensions['mysql'] = mysql
     add_routes(app)
     return app
